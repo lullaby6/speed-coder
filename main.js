@@ -143,6 +143,8 @@ let words = [...new Set([
     "comments",
     "syntax",
     "socket",
+    "lower",
+    "upper",
     "sockets",
     "date",
     "iteration",
@@ -465,7 +467,7 @@ function nextSecond(){
 
             timeElapsed += 1
             timeElement.innerText = time - timeElapsed
-            
+
             charsElement.innerText = `chars: ${chars}`
 
             cps = chars/time
