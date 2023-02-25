@@ -292,7 +292,7 @@ let words = [...new Set([
     "req",
     "isset",
     "conn",
-    "steate",
+    "state",
     "discard",
     "values",
     "host",
