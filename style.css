@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'CascadiaCode';
+    src: url('CascadiaCode.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'CascadiaCode';
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: #2e2e2e;
+    gap: 25px;
+    padding: 100px;
+}
+
+.hero {
+    width: 100%;
+    position: relative;
+
+    background-color: #454545;
+
+    border-radius: 7.5px;
+    -webkit-border-radius: 7.5px;
+    -moz-border-radius: 7.5px;
+    -ms-border-radius: 7.5px;
+    -o-border-radius: 7.5px;
+
+    display: flex;
+
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+    cursor: none;
+}
+
+#input {
+    background-color: transparent;
+    width: 100%;
+    font-size: 37.5px;
+    color: #454545;
+    padding: 15px 0 15px 15px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 7.5;
+    -webkit-border-radius: 7.5;
+    -moz-border-radius: 7.5;
+    -ms-border-radius: 7.5;
+    -o-border-radius: 7.5;
+
+    position: absolute;
+    cursor: none;
+}
+
+#words {
+    width: 100%;
+
+    /* height: 500px; */
+    font-size: 37.5px;
+    resize: none;
+    color: #868585;
+    padding: 15px 0 15px 15px;
+
+    border: none;
+
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
