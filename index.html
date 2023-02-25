@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Speed Coder</title>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script> -->
     <script src="./iconify-icon.min.js" defer></script>
     <script src="./main.js" defer></script>
     <link rel="stylesheet" href="./style.css">
@@ -13,8 +12,18 @@
 <body>
     <main>
         <div class="hero">
+            <p id="time"></p>
+
             <p id="words"></p>
-            <input type="text" name="" id="input" placeholder="" spellcheck="false">
+            <input type="text" id="input" spellcheck="false" autocomplete="off">
+            <iconify-icon id="reset-icon" icon="tabler:reload"></iconify-icon>
+
+            <div id="finish">
+                <p id="chars">chars: 0</p>
+                <p id="cps">cps: 0</p>
+                <p id="max">max cps: 0</p>
+                <p id="last-max">last max cps: 0</p>
+            </div>
         </div>
     </main>
 </body>

@@ -37,8 +37,6 @@ main {
     display: flex;
 
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-
-    cursor: none;
 }
 
 #input {
@@ -78,4 +76,47 @@ main {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+#time {
+    position: absolute;
+    color: #868585;
+    font-size: 37.5px;
+    top: -15px;
+    translate: 0 -100%;
+    opacity: 50%;
+}
+
+#finish {
+    position: absolute;
+    color: #868585;
+    font-size: 37.5px;
+    bottom: -15px;
+    translate: 0 100%;
+    opacity: 50%;
+    display: none;
+}
+
+#reset-icon {
+    color: #868585;
+    font-size: 37.5px;
+    display: flex;
+    align-items: center;
+    margin: 15px;
+    cursor: pointer;
+    z-index: 100;
+    opacity: .5;
+    transition: opacity 5 ease-in-out;
+    -webkit-transition: opacity 5 ease-in-out;
+    -moz-transition: opacity 5 ease-in-out;
+    -ms-transition: opacity 5 ease-in-out;
+    -o-transition: opacity 5 ease-in-out;
+}
+
+#last-max {
+    display: none;
+}
+
+#reset-icon:hover {
+    opacity: 1;
 }

@@ -296,7 +296,6 @@ let words = [...new Set([
     "discard",
     "values",
     "host",
-    "red",
     "net",
     "network",
     "sorted",
@@ -371,32 +370,119 @@ function shuffle(array) {
     return array;
 }
 
-const input = document.querySelector('#input')
-const textarea = document.querySelector('#words')
-const hero = document.querySelector('#hero')
-
-let randomWordsArray = shuffle(words)
-let randomWordsString = randomWordsArray.join(' ')
-
-textarea.innerText = randomWordsString
-
-input.focus()
-
 const correctColor = '#cccccc'
 const errorColor = '#cb4350'
 
-let started = false
-let time = 15
-let chars = 0
+const inputElement = document.querySelector('#input')
+const wordsElement = document.querySelector('#words')
+const heroElement = document.querySelector('#hero')
+const timeElement = document.querySelector('#time')
+const charsElement = document.querySelector('#chars')
+const cpsElement = document.querySelector('#cps')
+const finishElement = document.querySelector('#finish')
+const maxElement = document.querySelector('#max')
+const resetElement = document.querySelector('#reset-icon')
+const lastMaxElement = document.querySelector('#last-max')
 
-input.addEventListener('input', e => {
-    if(!started) {
+let randomWordsArray = []
+let randomWordsString = ''
+
+let time = 30
+
+let started = false
+let finished = false
+
+let chars = 0
+let timeElapsed = 0
+let cps = 0
+let lastMaxCPS = 0
+
+let nextSecondTimeout = null;
+
+function reset(){
+    started = false
+    finished = false
+    chars = 0
+    timeElapsed = 0
+    cps = 0
+    lastMaxCPS = 0
+
+    randomWordsArray = shuffle(words)
+    randomWordsString = randomWordsArray.join(' ')
+
+    wordsElement.innerText = randomWordsString
+
+    inputElement.removeAttribute('disabled')
+    inputElement.value = ''
+    inputElement.focus()
+
+    timeElement.innerText = time
+
+    inputElement.style.cursor = 'none'
+    finishElement.style.display = 'none'
+    lastMaxElement.style.display = 'none'
+    try {
+        clearTimeout(nextSecondTimeout)
+        nextSecondTimeout = null
+    } catch (error) {}
+}
+
+reset()
+
+function finish(){
+    inputElement.setAttribute('disabled', '')
+    inputElement.style.cursor = 'default'
+
+    finishElement.style.display = 'block'
+
+    started = false
+    finished = true
+
+    let maxCPS = localStorage.getItem("maxCPS")
+
+    cps = chars/time
+
+    if (maxCPS === null) {
+        localStorage.setItem('maxCPS', cps)
+    }else{
+        if(cps > maxCPS) {
+            lastMaxCPS = maxCPS
+
+            lastMaxElement.innerText = `last max cps: ${lastMaxCPS}`
+            lastMaxElement.style.display = 'block'
+
+            localStorage.setItem('maxCPS', cps)
+        }
+    }
+
+    maxElement.innerText = `max cps: ${localStorage.getItem("maxCPS")}`
+}
+
+function nextSecond(){
+    if (timeElapsed != time) {
+
+        nextSecondTimeout = setTimeout(() => {
+
+            timeElapsed += 1
+            timeElement.innerText = time - timeElapsed
+            
+            charsElement.innerText = `chars: ${chars}`
+
+            cps = chars/time
+            cpsElement.innerText = `cps: ${cps}`
+
+            nextSecond()
+        }, 1000)
+
+    }else{
+        finish()
+    }
+}
+
+inputElement.addEventListener('input', e => {
+    if(!started && !finished) {
         started = true
-        console.log('start!')
-        setTimeout(() => {
-            console.log(`${chars} in ${time} seconds.`)
-            console.log(`${chars/time} CPS (Chars Per Second).`)
-        }, time*1000)
+        nextSecond()
     }
 
     if(e.target.value.endsWith(" ")) {
@@ -404,19 +490,26 @@ input.addEventListener('input', e => {
             randomWordsArray.shift()
 
             randomWordsString = randomWordsArray.join(' ')
-            textarea.innerText = randomWordsString
+            wordsElement.innerText = randomWordsString
 
             chars += e.target.value.length
-            input.value = ''
-            input.focus()
+
+            inputElement.value = ''
+            inputElement.focus()
         }else{
-            input.style.color = errorColor
+            inputElement.style.color = errorColor
         }
     }else{
         if(randomWordsArray[0].startsWith(e.target.value)){
-            input.style.color = correctColor
+            inputElement.style.color = correctColor
         }else{
-            input.style.color = errorColor
+            inputElement.style.color = errorColor
         }
     }
 })
+
+window.addEventListener('keydown', e => {
+    if(e.keyCode == 27) reset()
+})
+
+resetElement.addEventListener('click', () => reset())
