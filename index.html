@@ -10,20 +10,19 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <main>
-        <div class="hero">
-            <p id="time"></p>
+    <main id="main">
+        <p id="time"></p>
 
-            <p id="words"></p>
-            <input type="text" id="input" spellcheck="false" autocomplete="off">
-            <iconify-icon id="reset-icon" icon="tabler:reload"></iconify-icon>
+        <textarea id="words" rows="4" spellcheck="false" autocomplete="off" disabled></textarea>
+        <textarea id="input" rows="4" spellcheck="false" autocomplete="off"></textarea>
 
-            <div id="finish">
-                <p id="chars">chars: 0</p>
-                <p id="cps">cps: 0</p>
-                <p id="max">max cps: 0</p>
-                <p id="last-max">last max cps: 0</p>
-            </div>
+        <iconify-icon id="reset-icon" icon="tabler:reload"></iconify-icon>
+
+        <div id="finish">
+            <p id="chars">chars: 0</p>
+            <p id="cps">cps: 0</p>
+            <p id="max">max cps: 0</p>
+            <p id="last-max">last max cps: 0</p>
         </div>
     </main>
 </body>

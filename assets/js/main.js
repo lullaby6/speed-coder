@@ -405,14 +405,13 @@ function shuffle(array) {
     return array;
 }
 
-const correctColor = '#cccccc'
-const errorColor = '#cb4350'
+const randomItemFromArray = array => array[Math.floor(Math.random() * array.length)];
 
 const inputElement = document.querySelector('#input')
 const wordsElement = document.querySelector('#words')
-const heroElement = document.querySelector('#hero')
 const timeElement = document.querySelector('#time')
 const charsElement = document.querySelector('#chars')
+const mainElement = document.querySelector('#main')
 const cpsElement = document.querySelector('#cps')
 const finishElement = document.querySelector('#finish')
 const maxElement = document.querySelector('#max')
@@ -434,7 +433,21 @@ let lastMaxCPS = 0
 
 let nextSecondTimeout = null;
 
+const colors = {
+    correctList: [
+        '#61AFEF',
+        '#E5C07B',
+        '#89C36D',
+        '#C678DD'
+    ],
+    error: '#e3505a'
+}
+
+let color = null;
+
 function reset(){
+    colors.color = randomItemFromArray(colors.correctList);
+
     started = false
     finished = false
     chars = 0
@@ -454,6 +467,7 @@ function reset(){
     timeElement.innerText = time
 
     inputElement.style.cursor = 'none'
+    mainElement.style.cursor = 'none'
     finishElement.style.display = 'none'
     lastMaxElement.style.display = 'none'
     try {
@@ -467,6 +481,7 @@ reset()
 function finish(){
     inputElement.setAttribute('disabled', '')
     inputElement.style.cursor = 'default'
+    mainElement.style.cursor = 'default'
 
     finishElement.style.display = 'block'
 
@@ -532,13 +547,13 @@ inputElement.addEventListener('input', e => {
             inputElement.value = ''
             inputElement.focus()
         }else{
-            inputElement.style.color = errorColor
+            inputElement.style.color = colors.error
         }
     }else{
         if(randomWordsArray[0].startsWith(e.target.value)){
-            inputElement.style.color = correctColor
+            inputElement.style.color = colors.color
         }else{
-            inputElement.style.color = errorColor
+            inputElement.style.color = colors.error
         }
     }
 })
@@ -548,3 +563,15 @@ window.addEventListener('keydown', e => {
 })
 
 resetElement.addEventListener('click', () => reset())
+
+mainElement.addEventListener('click', () => {
+    if(finished) reset()
+})
+
+window.addEventListener('load', () => {
+    inputElement.style.width = `${wordsElement.getBoundingClientRect().width}px`
+})
+
+window.addEventListener('resize', () => {
+    inputElement.style.width = `${wordsElement.getBoundingClientRect().width}px`
+})
