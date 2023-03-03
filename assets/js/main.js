@@ -433,6 +433,9 @@ let lastMaxCPS = 0
 
 let nextSecondTimeout = null;
 
+let error = false
+let lastInput = ''
+
 const colors = {
     correctList: [
         '#61AFEF',
@@ -454,6 +457,9 @@ function reset(){
     timeElapsed = 0
     cps = 0
     lastMaxCPS = 0
+
+    error = false
+    lastInput = ''
 
     randomWordsArray = shuffle(words)
     randomWordsString = randomWordsArray.join(' ')
@@ -547,12 +553,25 @@ inputElement.addEventListener('input', e => {
             inputElement.value = ''
             inputElement.focus()
         }else{
+            if(!error) {
+                lastInput = e.target.value
+                error = true
+            }else{
+                e.target.value = lastInput
+            }
             inputElement.style.color = colors.error
         }
     }else{
         if(randomWordsArray[0].startsWith(e.target.value)){
+            error = false
             inputElement.style.color = colors.color
         }else{
+            if(!error) {
+                lastInput = e.target.value
+                error = true
+            }else{
+                e.target.value = lastInput
+            }
             inputElement.style.color = colors.error
         }
     }
@@ -560,6 +579,7 @@ inputElement.addEventListener('input', e => {
 
 window.addEventListener('keydown', e => {
     if(e.keyCode == 27) reset()
+    if(finished && e.keyCode == 32) reset()
 })
 
 resetElement.addEventListener('click', () => reset())
