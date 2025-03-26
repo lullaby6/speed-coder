@@ -448,7 +448,7 @@ const colors = {
 
 let color = null;
 
-function reset(){
+function reset() {
     colors.color = randomItemFromArray(colors.correctList);
 
     started = false
@@ -476,15 +476,16 @@ function reset(){
     mainElement.style.cursor = 'none'
     finishElement.style.display = 'none'
     lastMaxElement.style.display = 'none'
+
     try {
         clearTimeout(nextSecondTimeout)
         nextSecondTimeout = null
-    } catch (error) {}
+    } catch (_) {}
 }
 
 reset()
 
-function finish(){
+function finish() {
     inputElement.setAttribute('disabled', '')
     inputElement.style.cursor = 'default'
     mainElement.style.cursor = 'default'
@@ -498,10 +499,9 @@ function finish(){
 
     cps = chars/time
 
-    if (maxCPS === null) {
-        localStorage.setItem('maxCPS', cps)
-    }else{
-        if(cps > maxCPS) {
+    if (maxCPS === null) localStorage.setItem('maxCPS', cps)
+    else {
+        if (cps > maxCPS) {
             lastMaxCPS = maxCPS
 
             lastMaxElement.innerText = `last max cps: ${lastMaxCPS}`
@@ -514,9 +514,8 @@ function finish(){
     maxElement.innerText = `max cps: ${localStorage.getItem("maxCPS")}`
 }
 
-function nextSecond(){
+function nextSecond() {
     if (timeElapsed != time) {
-
         nextSecondTimeout = setTimeout(() => {
 
             timeElapsed += 1
@@ -530,18 +529,20 @@ function nextSecond(){
             nextSecond()
         }, 1000)
 
-    }else{
+    } else {
         finish()
     }
 }
 
 inputElement.addEventListener('input', e => {
-    if(!started && !finished) {
+    if (!started && !finished) {
         started = true
         nextSecond()
     }
 
-    if(e.target.value.endsWith(" ")) {
+    if (e.target.value ===  ' ') e.target.value = ''
+
+    if (e.target.value.endsWith(" ")) {
         if(e.target.value.trim() === randomWordsArray[0]) {
             randomWordsArray.shift()
 
@@ -561,15 +562,15 @@ inputElement.addEventListener('input', e => {
             }
             inputElement.style.color = colors.error
         }
-    }else{
-        if(randomWordsArray[0].startsWith(e.target.value)){
+    } else {
+        if (randomWordsArray[0].startsWith(e.target.value)) {
             error = false
             inputElement.style.color = colors.color
-        }else{
-            if(!error) {
+        } else {
+            if (!error) {
                 lastInput = e.target.value
                 error = true
-            }else{
+            } else {
                 e.target.value = lastInput
             }
             inputElement.style.color = colors.error
@@ -578,14 +579,16 @@ inputElement.addEventListener('input', e => {
 })
 
 window.addEventListener('keydown', e => {
-    if(e.keyCode == 27) reset()
-    if(finished && e.keyCode == 32) reset()
+    console.log(e.keyCode)
+
+    if (e.keyCode == 27) reset()
+    if (finished && e.keyCode == 32) reset()
 })
 
 resetElement.addEventListener('click', () => reset())
 
 mainElement.addEventListener('click', () => {
-    if(finished) reset()
+    if (finished) reset()
 })
 
 window.addEventListener('load', () => {
