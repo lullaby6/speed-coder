@@ -1,422 +1,15 @@
-let words = [...new Set([
-    "if",
-    "for",
-    "foreach",
-    "remove",
-    "add",
-    "push",
-    "pop",
-    "class",
-    "new",
-    "list",
-    "array",
-    "let",
-    "query",
-    "selector",
-    "const",
-    "all",
-    "def",
-    "function",
-    "insert",
-    "select",
-    "from",
-    "left",
-    "top",
-    "icon",
-    "bottom",
-    "reverse",
-    "right",
-    "color",
-    "back",
-    "post",
-    "flex",
-    "grid",
-    "method",
-    "prop",
-    "property",
-    "open",
-    "close",
-    "static",
-    "void",
-    "main",
-    "str",
-    "var",
-    "set",
-    "background",
-    "from",
-    "finally",
-    "else",
-    "continue",
-    "interface",
-    "text",
-    "echo",
-    "enum",
-    "enums",
-    "thread",
-    "threads",
-    "regex",
-    "switch",
-    "boolean",
-    "lambda",
-    "pass",
-    "true",
-    "false",
-    "while",
-    "error",
-    "unicode",
-    "request",
-    "http",
-    "assert",
-    "any",
-    "abs",
-    "ascii",
-    "bool",
-    "read",
-    "line",
-    "lines",
-    "page",
-    "write",
-    "edit",
-    "justify",
-    "execute",
-    "delete",
-    "byte",
-    "string",
-    "compile",
-    "dict",
-    "exec",
-    "sys",
-    "system",
-    "os",
-    "filter",
-    "package",
-    "release",
-    "version",
-    "file",
-    "pos",
-    "range",
-    "hash",
-    "uuid",
-    "id",
-    "count",
-    "code",
-    "codes",
-    "encrypt",
-    "script",
-    "json",
-    "scripts",
-    "counter",
-    "user",
-    "users",
-    "admin",
-    "staff",
-    "help",
-    "helper",
-    "forum",
-    "link",
-    "url",
-    "username",
-    "name",
-    "full",
-    "last",
-    "editor",
-    "temp",
-    "center",
-    "with",
-    "find",
-    "format",
-    "translate",
-    "api",
-    "rest",
-    "sets",
-    "index",
-    "numeric",
-    "number",
-    "service",
-    "services",
-    "postgresql",
-    "excel",
-    "mongodb",
-    "mariadb",
-    "mysql",
-    "connect",
-    "database",
-    "controller",
-    "controllers",
-    "view",
-    "views",
-    "mvc",
-    "numbers",
-    "input",
-    "comment",
-    "output",
-    "comments",
-    "syntax",
-    "socket",
-    "lower",
-    "upper",
-    "sockets",
-    "date",
-    "iteration",
-    "dates",
-    "random",
-    "math",
-    "split",
-    "cut",
-    "node",
-    "div",
-    "overflow",
-    "debug",
-    "padding",
-    "position",
-    "stack",
-    "display",
-    "margin",
-    "style",
-    "styles",
-    "border",
-    "outline",
-    "bug",
-    "width",
-    "height",
-    "font",
-    "react",
-    "angular",
-    "strip",
-    "join",
-    "leave",
-    "replace",
-    "align",
-    "drop",
-    "callback",
-    "theme",
-    "by",
-    "null",
-    "into",
-    "case",
-    "alter",
-    "default",
-    "auto",
-    "break",
-    "increment",
-    "injection",
-    "keyword",
-    "keywords",
-    "key",
-    "char",
-    "chars",
-    "keys",
-    "group",
-    "export",
-    "port",
-    "router",
-    "application",
-    "com",
-    "www",
-    "struct",
-    "io",
-    "app",
-    "encode",
-    "decode",
-    "base",
-    "routes",
-    "vars",
-    "route",
-    "module",
-    "src",
-    "source",
-    "sub",
-    "config",
-    "plugin",
-    "env",
-    "where",
-    "avg",
-    "sum",
-    "or",
-    "not",
-    "and",
-    "elseif",
-    "callbacks",
-    "call",
-    "sql",
-    "int",
-    "async",
-    "await",
-    "promise",
-    "integer",
-    "instance",
-    "len",
-    "length",
-    "map",
-    "local",
-    "locals",
-    "memory",
-    "create",
-    "fix",
-    "data",
-    "type",
-    "dom",
-    "jsx",
-    "web",
-    "token",
-    "jwt",
-    "yml",
-    "xml",
-    "csv",
-    "types",
-    "lib",
-    "library",
-    "worker",
-    "history",
-    "require",
-    "println",
-    "extend",
-    "import",
-    "object",
-    "objects",
-    "task",
-    "schedule",
-    "min",
-    "html",
-    "css",
-    "nodes",
-    "child",
-    "parent",
-    "element",
-    "animate",
-    "animation",
-    "table",
-    "update",
-    "limit",
-    "crud",
-    "max",
-    "get",
-    "print",
-    "console",
-    "return",
-    "log",
-    "document",
-    "item",
-    "default",
-    "items",
-    "key",
-    "keys",
-    "listener",
-    "event",
-    "sort",
-    "div",
-    "public",
-    "pip",
-    "npm",
-    "private",
-    "update",
-    "doc",
-    "include",
-    "value",
-    "send",
-    "request",
-    "status",
-    "result",
-    "response",
-    "ajax",
-    "res",
-    "req",
-    "isset",
-    "conn",
-    "state",
-    "discard",
-    "values",
-    "host",
-    "net",
-    "network",
-    "sorted",
-    "slice",
-    "server",
-    "pass",
-    "password",
-    "try",
-    "catch",
-    "super",
-    "fill",
-    "except",
-    "exception",
-    "load",
-    "reload",
-    "upload",
-    "cancel",
-    "tuple",
-    "zip",
-    "java",
-    "python",
-    "window",
-    "start",
-    "startwith",
-    "endwith",
-    "screen",
-    "session",
-    "fetch",
-    "storage",
-    "location",
-    "time",
-    "prefab",
-    "timer",
-    "timing",
-    "cookie",
-    "cookies",
-    "form",
-    "search",
-    "append",
-    "clear",
-    "insert",
-    "copy",
-    "str",
-    "line",
-    "loop",
-    "datetime",
-    "timeout",
-    "interval",
-    "paste",
-    "hover",
-    "cobol",
-    "inner",
-    "nav",
-    "button",
-    "init",
-    "self",
-    "click",
-    "current",
-    "handle",
-    "press",
-    "navigator",
-    "language",
-    "this"
-])].sort()
+const WORDS = [...new Set(["abs","add","ajax","align","alter","and","animate","animation","any","api","append","application","argc","argv","array","ascii","assert","async","asyncfunction","auto","await","background","base","boolean","bool","border","break","bug","by","byte","call","callback","callbacks","cancel","case","catch","catcherror","char","chars","child","class","click","close","code","codes","color","com","comment","comments","compile","config","connect","console","const","continue","controller","controllers","copy","cookie","cookies","counter","create","crud","csv","current","cut","data","database","date","datetime","dates","decode","default","delete","dict","div","doc","document","drop","echo","edit","element","else","elseif","encode","encrypt","enum","enumclass","enums","env","error","eval","event","except","exception","exec","execute","excel","extends","false","fetch","file","fill","filter","find","finally","finallyblock","fix","flex","font","for","foreach","form","format","forum","from","full","function","get","grid","group","handle","hash","height","help","helper","history","host","hover","html","http","icon","id","if","implements","import","include","increment","index","init","input","insert","instance","instanceof","int","integer","interface","into","io","isset","item","items","iteration","java","join","json","jwt","key","keys","keyword","keywords","lambda","language","last","leave","len","length","let","lib","library","line","lines","link","listener","list","load","local","locals","location","log","loop","lower","main","map","margin","mariadb","math","max","memory","method","min","module","mongodb","msql","mvc","mysql","name","namespace","nav","net","network","new","node","nodes","npm","null","nullpointer","number","numbers","numeric","object","objects","open","or","os","output","package","padding","page","parent","pass","password","paste","pip","plugin","pointer","pop","port","postgresql","pos","post","prefab","prefetch","print","println","private","promise","prop","property","prototype","public","push","python","query","range","react","read","reference","regex","release","reload","remove","req","request","require","res","response","result","return","reverse","right","router","route","routes","schedule","screen","script","scripts","search","select","self","send","server","service","services","session","set","sets","slice","socket","sockets","sort","source","sql","src","stack","staff","start","startwith","state","static","status","storage","str","string","strip","struct","style","styles","sub","sum","super","switch","switchcase","syntax","system","table","task","temp","text","then","theme","this","thread","threads","throw","throws","time","timeout","timer","timing","token","top","true","try","trycatch","tuple","type","typeof","types","union","unicode","update","upper","upload","url","user","username","users","uuid","value","values","var","vars","version","view","views","void","web","where","while","width","window","with","worker","write","xml","xss","yml","yield","zip","www","jsx"])]
 
-function shuffle(array) {
-    let currentIndex = array.length,  randomIndex;
-
-    while (currentIndex != 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-
-        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-    }
-
-    return array;
-}
-
-const randomItemFromArray = array => array[Math.floor(Math.random() * array.length)];
-
-const inputElement = document.querySelector('#input')
-const wordsElement = document.querySelector('#words')
-const timeElement = document.querySelector('#time')
-const charsElement = document.querySelector('#chars')
-const mainElement = document.querySelector('#main')
-const cpsElement = document.querySelector('#cps')
-const finishElement = document.querySelector('#finish')
-const maxElement = document.querySelector('#max')
-const resetElement = document.querySelector('#reset-icon')
-const lastMaxElement = document.querySelector('#last-max')
+const $input = document.querySelector('#input')
+const $words = document.querySelector('#words')
+const $time = document.querySelector('#time')
+const $chars = document.querySelector('#chars')
+const $main = document.querySelector('#main')
+const $cps = document.querySelector('#cps')
+const $finish = document.querySelector('#finish')
+const $max = document.querySelector('#max')
+const $reset = document.querySelector('#reset-icon')
+const $lastMax = document.querySelector('#last-max')
 
 let randomWordsArray = []
 let randomWordsString = ''
@@ -461,80 +54,80 @@ function reset() {
     error = false
     lastInput = ''
 
-    randomWordsArray = shuffle(words)
+    randomWordsArray = shuffle([...WORDS])
     randomWordsString = randomWordsArray.join(' ')
 
-    wordsElement.innerText = randomWordsString
+    $words.innerText = randomWordsString
 
-    inputElement.removeAttribute('disabled')
-    inputElement.value = ''
-    inputElement.focus()
+    $input.removeAttribute('disabled')
+    $input.value = ''
+    $input.focus()
 
-    timeElement.innerText = time
+    $time.innerText = time
 
-    inputElement.style.cursor = 'none'
-    mainElement.style.cursor = 'none'
-    finishElement.style.display = 'none'
-    lastMaxElement.style.display = 'none'
+    $input.style.cursor = 'none'
+    $main.style.cursor = 'none'
+    $finish.style.display = 'none'
+    $lastMax.style.display = 'none'
 
-    try {
+    if (nextSecondTimeout) {
         clearTimeout(nextSecondTimeout)
         nextSecondTimeout = null
-    } catch (_) {}
+    }
 }
 
 reset()
 
 function finish() {
-    inputElement.setAttribute('disabled', '')
-    inputElement.style.cursor = 'default'
-    mainElement.style.cursor = 'default'
+    $input.setAttribute('disabled', '')
+    $input.style.cursor = 'default'
+    $main.style.cursor = 'default'
 
-    finishElement.style.display = 'block'
+    $finish.style.display = 'block'
 
     started = false
     finished = true
 
-    let maxCPS = localStorage.getItem("maxCPS")
+    const maxCPS = localStorage.getItem("maxCPS")
 
     cps = chars/time
 
-    if (maxCPS === null) localStorage.setItem('maxCPS', cps)
-    else {
+    if (maxCPS === null) {
+        localStorage.setItem('maxCPS', cps)
+    } else {
         if (cps > maxCPS) {
             lastMaxCPS = maxCPS
 
-            lastMaxElement.innerText = `last max cps: ${lastMaxCPS}`
-            lastMaxElement.style.display = 'block'
+            $lastMax.innerText = `last max cps: ${lastMaxCPS}`
+            $lastMax.style.display = 'block'
 
             localStorage.setItem('maxCPS', cps)
         }
     }
 
-    maxElement.innerText = `max cps: ${localStorage.getItem("maxCPS")}`
+    $max.innerText = `max cps: ${localStorage.getItem("maxCPS")}`
 }
 
 function nextSecond() {
-    if (timeElapsed != time) {
-        nextSecondTimeout = setTimeout(() => {
-
-            timeElapsed += 1
-            timeElement.innerText = time - timeElapsed
-
-            charsElement.innerText = `chars: ${chars}`
-
-            cps = chars/time
-            cpsElement.innerText = `cps: ${cps}`
-
-            nextSecond()
-        }, 1000)
-
-    } else {
+    if (timeElapsed == time) {
         finish()
+        return
     }
+
+    nextSecondTimeout = setTimeout(() => {
+        timeElapsed += 1
+        $time.innerText = time - timeElapsed
+
+        $chars.innerText = `chars: ${chars}`
+
+        cps = chars/time
+        $cps.innerText = `cps: ${cps}`
+
+        nextSecond()
+    }, 1000)
 }
 
-inputElement.addEventListener('input', e => {
+$input.addEventListener('input', e => {
     if (!started && !finished) {
         started = true
         nextSecond()
@@ -543,29 +136,16 @@ inputElement.addEventListener('input', e => {
     if (e.target.value ===  ' ') e.target.value = ''
 
     if (e.target.value.endsWith(" ")) {
-        if(e.target.value.trim() === randomWordsArray[0]) {
+        if (e.target.value.trim() === randomWordsArray[0]) {
             randomWordsArray.shift()
 
             randomWordsString = randomWordsArray.join(' ')
-            wordsElement.innerText = randomWordsString
+            $words.innerText = randomWordsString
 
             chars += e.target.value.length
 
-            inputElement.value = ''
-            inputElement.focus()
-        }else{
-            if(!error) {
-                lastInput = e.target.value
-                error = true
-            }else{
-                e.target.value = lastInput
-            }
-            inputElement.style.color = colors.error
-        }
-    } else {
-        if (randomWordsArray[0].startsWith(e.target.value)) {
-            error = false
-            inputElement.style.color = colors.color
+            $input.value = ''
+            $input.focus()
         } else {
             if (!error) {
                 lastInput = e.target.value
@@ -573,7 +153,21 @@ inputElement.addEventListener('input', e => {
             } else {
                 e.target.value = lastInput
             }
-            inputElement.style.color = colors.error
+
+            $input.style.color = colors.error
+        }
+    } else {
+        if (randomWordsArray[0].startsWith(e.target.value)) {
+            error = false
+            $input.style.color = colors.color
+        } else {
+            if (!error) {
+                lastInput = e.target.value
+                error = true
+            } else {
+                e.target.value = lastInput
+            }
+            $input.style.color = colors.error
         }
     }
 })
@@ -585,16 +179,33 @@ window.addEventListener('keydown', e => {
     if (finished && e.keyCode == 32) reset()
 })
 
-resetElement.addEventListener('click', () => reset())
+$reset.addEventListener('click', () => reset())
 
-mainElement.addEventListener('click', () => {
+$main.addEventListener('click', () => {
     if (finished) reset()
 })
 
 window.addEventListener('load', () => {
-    inputElement.style.width = `${wordsElement.getBoundingClientRect().width}px`
+    $input.style.width = `${$words.getBoundingClientRect().width}px`
 })
 
 window.addEventListener('resize', () => {
-    inputElement.style.width = `${wordsElement.getBoundingClientRect().width}px`
+    $input.style.width = `${$words.getBoundingClientRect().width}px`
 })
+
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+
+    while (currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
+
+function randomItemFromArray(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
